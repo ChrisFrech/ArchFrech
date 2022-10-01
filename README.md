@@ -1,2 +1,2 @@
 # ArchFrech
-Tools and scripts for the Arch Linux distribution
+Script to make the installation process for a full productive Arch desktop installation easy and automated.
