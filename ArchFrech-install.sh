@@ -44,15 +44,29 @@ echo -ne "
 Preparing disks & Partitions
 ################################################################
 "
+
+PS3='
+Select the disk to install on: '
+options=($(lsblk -n --output TYPE,KNAME,SIZE | awk '$1=="disk"{print "/dev/"$2"|"$3}'))
+
+select_option $? 1 "${options[@]}"
+disk=${options[$?]%|*}
+
+echo -e "\n${disk%|*} selected \n"
+    set_option DISK ${disk%|*}
+
+drivessd
+}
+
 # Creating partitions
-sgdisk -n 1::+500M --typecode=1:ef00 --change-name=1:'EFIBOOT' $EFI_Partition
-sgdisk -n 2::+8G --typecode=2:8300 --change-name=2:'SWAP' $SWAP_Partition
-sgdisk -n 3::-0 --typecode=3:8300 --change-name=3:'ROOT' $ROOT_Partition
+# sgdisk -n 1::+500M --typecode=1:ef00 --change-name=1:'EFIBOOT' $EFI_Partition
+# sgdisk -n 2::+8G --typecode=2:8300 --change-name=2:'SWAP' $SWAP_Partition
+# sgdisk -n 3::-0 --typecode=3:8300 --change-name=3:'ROOT' $ROOT_Partition
 
 # Creating filesystems on partitions
-mkfs.vfat -F32 $EFI_PARTITION
-mkswap $SWAP_Partition
-mkfs.ext4 $ROOT_Partition
+# mkfs.vfat -F32 $EFI_PARTITION
+# mkswap $SWAP_Partition
+# mkfs.ext4 $ROOT_Partition
 
 
 echo -ne "
