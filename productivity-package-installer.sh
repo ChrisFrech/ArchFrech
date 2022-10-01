@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo pacman -S
+sudo pacman -S --noconfirm {
 a52dec
 aalib
 abseil-cpp
@@ -1274,7 +1274,7 @@ zlib
 zstd
 zvbi
 zxing-cpp
---noconfirm
+}
 
 // Clone "yay" AUR package helper
 && git clone https://aur.archlinux.org/yay.git
