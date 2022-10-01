@@ -45,12 +45,14 @@ Preparing disks & Partitions
 ################################################################
 "
 # Creating partitions
-sgdisk -n 1::+500M --typecode=1:ef00 --change-name=1:'EFIBOOT' 
-sgdisk -n 2::+8G --typecode=2:8300 --change-name=2:'SWAP' 
-sgdisk -n 3::-0 --typecode=3:8300 --change-name=3:'ROOT'
+sgdisk -n 1::+500M --typecode=1:ef00 --change-name=1:'EFIBOOT' $EFI_Partition
+sgdisk -n 2::+8G --typecode=2:8300 --change-name=2:'SWAP' $SWAP_Partition
+sgdisk -n 3::-0 --typecode=3:8300 --change-name=3:'ROOT' $ROOT_Partition
 
 # Creating filesystems on partitions
-mkfs.vfat -F32 $DISK_PARTITION
+mkfs.vfat -F32 $EFI_PARTITION
+mkswap $SWAP_Partition
+mkfs.ext4 $ROOT_Partition
 
 
 echo -ne "
@@ -59,11 +61,11 @@ Installing productive packages
 ################################################################
 "
 # Installing all packages in packages.txt
-sudo pacman -Sy --noconfirm --needed $(awk '{print $1}'  packages.txt)
+# sudo pacman -Sy --noconfirm --needed $(awk '{print $1}'  packages.txt)
 
 # Creating initial user "arch" and set the password to "arch" !!!DO NOT LEAVE LIKE THIS!!!
-useradd -m arch
-passwd arch
+# useradd -m arch
+# passwd arch
 
 
 
