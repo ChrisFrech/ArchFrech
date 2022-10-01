@@ -36,7 +36,7 @@ timedatectl set-ntp true
 setfont /usr/share/kbd/consolefonts/ter-124b.psf.gz
 
 # Installing latest keyring to prevent key errors during installation
-pacman -S --noconfirm --needed archlinux-keyring pacman-contrib terminus-font
+pacman -Sy --noconfirm --needed archlinux-keyring pacman-contrib terminus-font
 
 
 echo -ne "
@@ -59,7 +59,7 @@ Installing productive packages
 ################################################################
 "
 # Installing all packages in packages.txt
-sudo pacman -S --noconfirm --needed $(awk '{print $1}'  packages.txt)
+sudo pacman -Sy --noconfirm --needed $(awk '{print $1}'  packages.txt)
 
 # Creating initial user "arch" and set the password to "arch" !!!DO NOT LEAVE LIKE THIS!!!
 useradd -m arch
