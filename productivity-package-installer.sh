@@ -1,4 +1,5 @@
 #!/bin/bash
+
 sudo pacman -S
 a52dec
 aalib
@@ -1275,14 +1276,14 @@ zvbi
 zxing-cpp
 --noconfirm
 
-###Clone "yay" AUR package helper
+// Clone "yay" AUR package helper
 && git clone https://aur.archlinux.org/yay.git
 
-###Go to install directory
+// Go to install directory
 && cd yay
 
-###Install yay
+// Install "yay"
 && makepkg -si --noconfirm
 
-### Go back to main directory
+//  Go back to main directory
 && cd ..
