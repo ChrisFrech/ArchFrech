@@ -1,3 +1,5 @@
+#!/bin/bash
+
 echo -ne "
   /$$$$$$  /$$                 /$$           /$$        /$$$$$$                      /$$             /$$       /$$                                          
  /$$__  $$| $$                |__/          | $/       /$$__  $$                    | $$            | $$      |__/                                          
@@ -36,7 +38,7 @@ timedatectl set-ntp true
 setfont /usr/share/kbd/consolefonts/ter-124b.psf.gz
 
 # Installing latest keyring to prevent key errors during installation
-pacman -Sy --noconfirm --needed archlinux-keyring pacman-contrib terminus-font
+pacman -Sy --noconfirm --needed archlinux-keyring pacman-contrib
 
 
 echo -ne "
@@ -44,19 +46,6 @@ echo -ne "
 Preparing disks & Partitions
 ################################################################
 "
-
-PS3='
-Select the disk to install on: '
-options=($(lsblk -n --output TYPE,KNAME,SIZE | awk '$1=="disk"{print "/dev/"$2"|"$3}'))
-
-select_option $? 1 "${options[@]}"
-disk=${options[$?]%|*}
-
-echo -e "\n${disk%|*} selected \n"
-    set_option DISK ${disk%|*}
-
-drivessd
-}
 
 # Creating partitions
 # sgdisk -n 1::+500M --typecode=1:ef00 --change-name=1:'EFIBOOT' $EFI_Partition
