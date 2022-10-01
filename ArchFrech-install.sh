@@ -25,9 +25,9 @@ Starting full arch installation WITHOUT ENCRYPTION...
 "
 
 echo -ne "
-########################################
+################################################################
 Performing basic system preparation
-########################################
+################################################################
 "
 # Setting ntp server
 timedatectl set-ntp true
@@ -40,9 +40,9 @@ pacman -S --noconfirm --needed archlinux-keyring pacman-contrib terminus-font
 
 
 echo -ne "
-########################################
+################################################################
 Preparing disks & Partitions
-########################################
+################################################################
 "
 # Creating partitions
 sgdisk -n 1::+500M --typecode=1:ef00 --change-name=1:'EFIBOOT' 
@@ -54,9 +54,9 @@ mkfs.vfat -F32 $DISK_PARTITION
 
 
 echo -ne "
-########################################
+################################################################
 Installing productive packages
-########################################
+################################################################
 "
 # Installing all packages in packages.txt
 sudo pacman -S --noconfirm --needed $(awk '{print $1}'  packages.txt)
@@ -69,9 +69,9 @@ passwd arch
 
 
 echo -ne "
-########################################
+################################################################
 Installing yay in user context
-########################################
+################################################################
 "
 
 # Clone "yay" AUR package helper
