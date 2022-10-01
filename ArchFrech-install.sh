@@ -11,4 +11,3 @@ $ sudo pacman -S $(awk '{print $1}'  packages.txt)
 
 //  Go back to main directory
 && cd ..
-Footer
