@@ -25,20 +25,22 @@ echo -ne "
                                                                                                                               |__/      
 Starting full arch installation WITHOUT ENCRYPTION...
 "
+sleep 3
 
 echo -ne "
 ################################################################
 Performing basic system preparation
 ################################################################
 "
-# Setting ntp server
-timedatectl set-ntp true
-
 # Setting new font for better readability
 setfont /usr/share/kbd/consolefonts/ter-124b.psf.gz
 
+# Setting ntp server
+timedatectl set-ntp true
+
 # Installing latest keyring to prevent key errors during installation
 pacman -Sy --noconfirm --needed archlinux-keyring pacman-contrib
+
 
 
 echo -ne "
@@ -46,6 +48,8 @@ echo -ne "
 Preparing disks & Partitions
 ################################################################
 "
+# Selecting target disk 
+PS3=
 
 # Creating partitions
 # sgdisk -n 1::+500M --typecode=1:ef00 --change-name=1:'EFIBOOT' $EFI_Partition
