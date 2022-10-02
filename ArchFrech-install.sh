@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Setting new font for better readability
+setfont /usr/share/kbd/consolefonts/ter-124b.psf.gz
+
 echo -ne "
  /$$$$$$$$ /$$$$$$$$       /$$$$$$                      /$$             /$$                       /$$               /$$ /$$                    
 | $$_____/|_____ $$       /$$__  $$                    | $$            |__/                      | $$              | $$| $$                    
@@ -20,8 +23,7 @@ echo -ne "
 Performing basic system preparation
 ################################################################
 "
-# Setting new font for better readability
-setfont /usr/share/kbd/consolefonts/ter-124b.psf.gz
+
 
 # Setting ntp server
 timedatectl set-ntp true
