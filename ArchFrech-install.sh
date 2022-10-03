@@ -1,5 +1,7 @@
 #!/bin/bash
 
+clear
+
 # Setting new font for better readability
 setfont /usr/share/kbd/consolefonts/ter-124b.psf.gz
 
